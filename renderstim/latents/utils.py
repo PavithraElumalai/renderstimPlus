@@ -3,10 +3,20 @@ import pyquaternion as pyquat
 from kubric.core import objects
 import png
 from PIL import Image
+import os
+import pathlib
+import json
 
 
 def default_rng():
     return np.random.RandomState()
+
+def get_gso_ids():
+    with open(os.path.join(pathlib.Path().resolve().parent,"GSO.json")) as f:
+        gso_assets = json.load(f)['assets']
+    GSO_IDS = list(gso_assets.keys())
+    
+    return GSO_IDS
   
 
 def position_sampler(region):
